@@ -7,6 +7,7 @@ const ApiFeatures = require("../utils/apifeatures");
 // Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
+    req.body.user = req.user.id;    // req.user.id is the id which we got after login
     const product = await Product.create(req.body);
     res.status(201).json({
         success: true,
